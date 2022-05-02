@@ -17,7 +17,7 @@ export class UserService {
     return from(this.userRepository.findOne({ where: { id } })).pipe(
       map((user: User) => {
         const { password, ...result } = user;
-        return user;
+        return result;
       })
     );
   }

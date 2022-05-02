@@ -1,5 +1,5 @@
 export interface LoginPayload {
-    email_username: string;
+    email: string;
     password: string;
 }
 
@@ -9,6 +9,7 @@ export interface _User {
     email?: string;
     password?: string;
     role?: string;
+    profileImage?: string;
 }
 
 export interface UserData {

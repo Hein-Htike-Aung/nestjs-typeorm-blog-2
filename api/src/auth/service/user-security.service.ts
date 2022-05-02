@@ -24,18 +24,19 @@ export class UserSecurityService {
     }
 
     validateUser(email: string, password: string): Observable<User> {
-        return from(this.userRepository.findOne({ where: { email }, select: ['id', 'password', 'name', 'username', 'email', 'role', 'profileImage'] })).pipe(
-            switchMap((user: User) => this.authService.comparePasswords(password, user.password).pipe(
-                map((match: boolean) => {
-                    if (match) {
-                        const { password, ...result } = user;
-                        return result;
-                    } else {
-                        throw Error;
-                    }
-                })
-            ))
-        )
+        return from(
+            this.userRepository.findOne({ where: { email }, select: ['id', 'password', 'name', 'username', 'email', 'role', 'profileImage'] })).pipe(
+                switchMap((user: User) => this.authService.comparePasswords(password, user.password).pipe(
+                    map((match: boolean) => {
+                        if (match) {
+                            const { password, ...result } = user;
+                            return result;
+                        } else {
+                            throw Error;
+                        }
+                    })
+                )),
+            )
     }
 
     login(user: User): Observable<string> {
@@ -59,8 +60,8 @@ export class UserSecurityService {
                 newUser.username = user.username;
                 newUser.email = user.email;
                 newUser.password = passwordHash;
-                // newUser.role = UserRole.USER;
-                newUser.role = user.role;
+                newUser.role = UserRole.USER;
+                // newUser.role = user.role;
 
                 return from(this.userRepository.save(newUser)).pipe(
                     map((user: User) => {

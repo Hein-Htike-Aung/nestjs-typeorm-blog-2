@@ -1,0 +1,72 @@
+### Create User
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "name": "Karina",
+    "username": "karina",
+    "email": "admin2@gmail.com",
+    "password": "admin",
+    "role": "EDITOR"
+}
+
+
+### login 
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+    "email_username": "admin@gmail.com",
+    "password": "admin" 
+}
+
+
+### Update User
+PATCH http://localhost:3000/users/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiTGlseSIsInVzZXJuYW1lIjoibGlseSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwicHJvZmlsZUltYWdlIjoiYmxhY2tob2xlZjdkMDEwNGUtYWFkZS00OWVjLTllMmYtY2M5NmU0YzZkNGM3LmpwZyJ9LCJpYXQiOjE2NTE0ODUyNzcsImV4cCI6MTY1MTQ5NTI3N30.M71uygdGkcesAy5QgMLFqzlSGpvwCOrrPzeYovR41dM
+
+{
+    "name": "Ning Ning",
+    "username": "ning ning",
+    "email": "ning@gmail.com"
+}
+
+
+### Update Role
+PATCH http://localhost:3000/users/1/update-role
+Content-Type: application/json
+
+{
+    "role": "EDITOR"
+}
+
+
+### Find by id
+GET http://localhost:3000/users/7
+
+
+### find all 
+GET http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiTGlseSIsInVzZXJuYW1lIjoibGlseSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwicHJvZmlsZUltYWdlIjoiYmxhY2tob2xlZjdkMDEwNGUtYWFkZS00OWVjLTllMmYtY2M5NmU0YzZkNGM3LmpwZyJ9LCJpYXQiOjE2NTE0ODUyMjAsImV4cCI6MTY1MTQ5NTIyMH0.F47lnJtD1djgug131sGdAoAF2R2kdsb-1dBnxzvG4kU
+
+
+### find all by using page & limit
+GET http://localhost:3000/users?page=1&limit=10
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiTGlseSIsInVzZXJuYW1lIjoibGlseSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwicHJvZmlsZUltYWdlIjpudWxsfSwiaWF0IjoxNjUxNDgzMTEyLCJleHAiOjE2NTE0OTMxMTJ9.l1w4Y6-pLQl5P3Juwk7VUAUd_X6fxWnNlFGXnm9tS4E
+
+### find all by using page & limit & username (always use page=0)
+GET http://localhost:3000/users?username=karina&page=0&limit=2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiTGlseSIsInVzZXJuYW1lIjoibGlseSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwicHJvZmlsZUltYWdlIjpudWxsfSwiaWF0IjoxNjUxNDgzMTEyLCJleHAiOjE2NTE0OTMxMTJ9.l1w4Y6-pLQl5P3Juwk7VUAUd_X6fxWnNlFGXnm9tS4E
+
+### delete by id
+DELETE  http://localhost:3000/users/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiTGlseSIsInVzZXJuYW1lIjoibGlseSIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwicHJvZmlsZUltYWdlIjpudWxsfSwiaWF0IjoxNjUxNDgzMjY3LCJleHAiOjE2NTE0OTMyNjd9.zlo9jb9NuQlHULkcHA7A3f83bQRT-mghX-A-nIYZcs0
+ 
+
+### Upload file (Test with postman - use body > form-data > File)
+POST http://localhost:3000/users/upload
+
+
+### find Profile Image
+GET http://localhost:3000/users/profile-image/blackholef7d0104e-aade-49ec-9e2f-cc96e4c6d4c7.jpg

@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <h1>
+      <a href="">Blog</a>
+    </h1>
+    <span class="example-spacer"></span>
+    <a routerLink="/users" class="me-3">Users</a>
+    <a routerLink="/admin" class="me-3">Admin</a>
+    <mat-form-field>
+      <mat-select
+        [(value)]="selected"
+        (selectionChange)="navigateTo($event.value)"
+      >
+        <mat-option *ngFor="let e of entries" [value]="e.link">{{
+          e.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,37 @@
+<h1 class="text-center mt-5">Login Page</h1>
+<form [formGroup]="loginForm">
+  <div class="auth-container">
+    <mat-form-field>
+      <input
+        type="text"
+        formControlName="email_username"
+        matInput
+        placeholder="Email/Username"
+      />
+      <mat-error *ngIf="loginForm.get('email_username')?.hasError('required')">
+        Email/Username is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="password"
+        formControlName="password"
+        matInput
+        placeholder="Password"
+      />
+      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+        Password is required
+      </mat-error>
+    </mat-form-field>
+    <div class="mt-3">
+      <button
+        [disabled]="loginForm.invalid"
+        mat-raised-button
+        color="primary"
+        (click)="login()"
+      >
+        Login
+      </button>
+    </div>
+  </div>
+</form>

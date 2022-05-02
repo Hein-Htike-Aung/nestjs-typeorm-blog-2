@@ -1,0 +1,94 @@
+<h1 class="text-center mt-5">Registeration</h1>
+<form [formGroup]="registerForm">
+  <div class="auth-container">
+    <mat-form-field>
+      <input
+        type="text"
+        formControlName="name"
+        matInput
+        placeholder="Full Name"
+        [errorStateMatcher]="errorMatcher"
+      />
+      <mat-error *ngIf="registerForm.get('name')?.hasError('required')">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="text"
+        formControlName="username"
+        matInput
+        placeholder="Username"
+        [errorStateMatcher]="errorMatcher"
+      />
+      <mat-error *ngIf="registerForm.get('username')?.hasError('required')">
+        Username is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="email"
+        formControlName="email"
+        matInput
+        placeholder="Email"
+        [errorStateMatcher]="errorMatcher"
+      />
+      <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="registerForm.get('email')?.hasError('email')">
+        Email is invalid
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="password"
+        formControlName="password"
+        matInput
+        placeholder="Password"
+        [errorStateMatcher]="errorMatcher"
+      />
+      <mat-error *ngIf="registerForm.get('password')?.hasError('required')">
+        Password is required
+      </mat-error>
+      <mat-error
+        *ngIf="registerForm.get('password')?.hasError('passwordInvalid')"
+      >
+        Password is not containing number
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="password"
+        formControlName="confirmPassword"
+        matInput
+        placeholder="Confirm Password"
+        [errorStateMatcher]="errorMatcher"
+      />
+      <mat-error
+        *ngIf="registerForm.get('confirmPassword')?.hasError('required')"
+      >
+        Password is required
+      </mat-error>
+      <!-- Mat Error doesn't work with Cross fields validations -->
+      <mat-hint
+        *ngIf="
+          registerForm.hasError('passwordMissMatch') &&
+          !registerForm.get('confirmPassword')?.hasError('required')
+        "
+      >
+        Password doesn't match
+      </mat-hint>
+    </mat-form-field>
+    <div class="mt-3">
+      <button
+        [disabled]="registerForm.invalid"
+        mat-raised-button
+        color="primary"
+        (click)="register()"
+      >
+        Login
+      </button>
+    </div>
+  </div>
+</form>
